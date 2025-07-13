@@ -39,7 +39,7 @@ iris_classification/
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/arz03/iris_classification.git
    cd iris_classification
    ```
 
@@ -58,6 +58,7 @@ iris_classification/
    ```bash
    jupyter notebook model.ipynb
    ```
+   Note: Make sure the directory "iris_classification/app/model" is present before saving the model
 
 5. **Run the API**
    ```bash
