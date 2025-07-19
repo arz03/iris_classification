@@ -26,10 +26,11 @@ iris_classification/
 │   └── model/
 │       └── trained_rf_model.pkl  # Trained ML model
 ├── model.ipynb                   # Model training notebook
-├── index.html                    # Test interface
+├── test_interface.html           # Test interface
 ├── requirements.txt              # Development dependencies
 ├── requirements-prod.txt         # Production dependencies (minimal)
 ├── Dockerfile                    # Container configuration
+├── manifest.yml                  # Cloud deployment configuration
 └── README.md                     # This file
 ```
 
@@ -46,7 +47,7 @@ iris_classification/
 2. **Create virtual environment**
    ```bash
    python -m venv venv
-   source venv/Scripts/activate  # On Linux: venv\Scripts\activate 
+   source venv/Scripts/activate
    ```
 
 3. **Install dependencies**
@@ -116,7 +117,7 @@ curl -X POST "http://localhost:8000/predict" \
 
 ## 🎯 Testing
 
-Open [index.html](index.html) in your browser for an interactive testing interface.
+Open [test_interface.html](test_interface.html) in your browser for an interactive testing interface.
 
 ## 📋 Dependencies
 
