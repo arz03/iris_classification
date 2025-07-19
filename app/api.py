@@ -5,9 +5,6 @@ This module provides a FastAPI-based REST API for classifying iris flowers
 using a trained Random Forest model. The API accepts iris flower measurements
 and returns species predictions with confidence probabilities.
 
-Author: Your Name
-Date: July 2025
-Version: 1.0
 """
 
 from fastapi import FastAPI, HTTPException
@@ -29,9 +26,9 @@ label_map = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
 
 def load_model():
     """
-    Load the trained Random Forest model from disk.
+    Load the trained Random Forest model.
     
-    Attempts to load the model from multiple possible file paths to handle
+    Load the model from multiple possible file paths to handle
     different deployment environments (local, Docker, cloud platforms).
     
     Returns:
@@ -148,10 +145,9 @@ class IrisData(BaseModel):
         }
 
 # Configure CORS middleware to allow cross-origin requests
-# Note: In production, consider restricting allow_origins to specific domains
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # Allow all origins (consider restricting in production)
+    allow_origins=["*"],          # Allow all origins (restrict in prod)
     allow_credentials=True,       # Allow cookies and authorization headers
     allow_methods=["*"],          # Allow all HTTP methods
     allow_headers=["*"],          # Allow all headers
@@ -269,13 +265,13 @@ def health_check():
         "status": "healthy",
         "model_loaded": model is not None,
         "api_version": "1.0",
-        "timestamp": "2025-07-19"  # Could be dynamic: datetime.now().isoformat()
+        "timestamp": "2025-07-20" # Example static timestamp, can be dynamic if needed
     }
 
 # Main execution block - runs when script is executed directly
 if __name__ == "__main__":
+
     # Configuration for different deployment environments
-    
     # Get port from environment variable (required for many cloud platforms)
     port = int(os.environ.get("PORT", 8000))
     
@@ -288,10 +284,9 @@ if __name__ == "__main__":
     print("Visit the /health endpoint for health checks")
     
     # Start the Uvicorn ASGI server
-    # reload=False for production stability (set to True during development)
     uvicorn.run(
         "app.api:app",    # Module and app instance
         host=host,        # Bind address
         port=port,        # Bind port
-        reload=False      # Disable auto-reload for production
+        reload=False      # Disable auto-reload for prod (True for dev)
     )
