@@ -96,8 +96,8 @@ async def lifespan(app: FastAPI):
     print("Starting Iris Classification API...")
     success = load_model()
     
-    if success:
-        print("API ready to serve predictions!")
+    if success: 
+       print("API ready to serve predictions!")
     else:
         print("WARNING: API started but model failed to load!")
     
@@ -135,7 +135,7 @@ class IrisData(BaseModel):
     class Config:
         """Pydantic configuration for the model."""
         # Example values for API documentation
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "sepal_length": 5.1,
                 "sepal_width": 3.5,
@@ -282,11 +282,12 @@ if __name__ == "__main__":
     print(f"Starting API server on {host}:{port}")
     print("Visit the /docs endpoint for interactive API documentation")
     print("Visit the /health endpoint for health checks")
+
     
     # Start the Uvicorn ASGI server
     uvicorn.run(
-        "app.api:app",    # Module and app instance
+        app,       # Use the FastAPI app instance directly
         host=host,        # Bind address
         port=port,        # Bind port
-        reload=False      # Disable auto-reload for prod (True for dev)
+        reload=False      # Disable auto-reload for production
     )
